@@ -36,7 +36,8 @@ body {
 
 .hero {
   position: relative;
-  padding: 3rem clamp(1rem, 3vw, 3.5rem);
+  /* slightly larger vertical rhythm on wide screens, tighter on small */
+  padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 3vw, 3.5rem);
   color: #4a1e12;
   border-radius: 32px;
   margin-bottom: 3.5rem;
@@ -68,7 +69,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem; /* tighten the gap between identity and title */
   text-align: center;
   justify-content: center;
 }
@@ -89,7 +90,12 @@ body {
   gap: 0.35rem;
   align-items: center;
   text-align: center;
+  max-width: 920px; /* constrain long taglines for readable line length */
+  margin: 0 auto;
 }
+
+/* Keep titles in normal flow (centered via flex/margin); logo is removed from markup
+   so we avoid absolute positioning here. Small-screen rules below handle stacking. */
 
 .hero__brand {
   font-family: "Playfair Display", serif;
@@ -109,22 +115,53 @@ body {
 .hero__title {
   font-family: "Playfair Display", serif;
   font-size: clamp(2.1rem, 6vw, 3.2rem);
-  margin: 0.4rem 0 1.2rem;
+  margin: 0.6rem 0 1rem; /* a bit more breathing above, slightly less below */
   color: #4a1e12;
 }
 
+/* About section */
+.about {
+  margin-top: 4rem;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(74, 30, 18, 0.08);
+  border-radius: 36px;
+  box-shadow: 0 20px 40px rgba(20, 8, 5, 0.06);
+}
+.about__inner {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+  color: #3a160b;
+}
+.about__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(58,22,11,0.6);
+  margin: 0 0 0.5rem;
+}
+.about h2 {
+  margin: 0 0 0.6rem;
+  font-family: "Playfair Display", serif;
+}
+.about p {
+  margin: 0.4rem auto;
+  max-width: 56ch;
+  color: rgba(58,22,11,0.75);
+}
+
 .hero__lede {
-  max-width: 40rem;
+  max-width: 46rem;
   font-size: 1.05rem;
   line-height: 1.7;
   color: rgba(74, 30, 18, 0.85);
-  margin: 0 auto;
+  margin: 0.4rem auto 0; /* small gap below title */
 }
 
 .hero__cta {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.6rem; /* slightly tighter to match new lede spacing */
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -656,6 +693,15 @@ body {
   .hero__identity {
     flex-direction: column;
     text-align: center;
+  }
+
+  /* Undo absolute centering on small screens so logo stacks above title */
+  .hero__titles {
+    position: static;
+    transform: none;
+  }
+  .hero__logo {
+    transform: none;
   }
 
   .dialog__content {

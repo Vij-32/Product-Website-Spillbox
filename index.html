@@ -17,9 +17,6 @@
       <header class="hero">
         <div class="hero__pattern" aria-hidden="true"></div>
         <div class="hero__identity">
-          <figure class="hero__logo">
-            <img src="./assets/spillbox-logo.svg" alt="Spillbox logo" />
-          </figure>
           <div class="hero__titles">
             <h1 class="hero__brand">Spillbox</h1>
             <p class="hero__tagline">
@@ -50,6 +47,13 @@
           </button>
           <button
             class="btn btn--ghost"
+            data-scroll="#about"
+            data-highlight-on-click="true"
+          >
+            About us
+          </button>
+          <button
+            class="btn btn--ghost"
             data-scroll="#presence"
              data-highlight-on-click="true"
             data-scroll-align="center"
@@ -60,6 +64,19 @@
       </header>
 
       <main>
+        <section class="about" id="about">
+          <div class="about__inner">
+            <p class="about__eyebrow">About Spillbox</p>
+            <h2>Craft, Care & Story</h2>
+            <p>
+              Spillbox partners with small ateliers and master craftspeople across India to curate thoughtfully made objects you can live with and pass down. We source directly, pay artisans fairly, and document the care rituals each object needs to age gracefully.
+            </p>
+            <p>
+              Explore our signature brands below to see material stories, origin notes, and care guidance.
+            </p>
+          </div>
+        </section>
+
         <section class="brands" id="brands">
           <div class="brands__header">
             <p class="brands__eyebrow">House of Brands</p>
