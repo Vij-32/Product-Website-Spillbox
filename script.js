@@ -1,3 +1,31 @@
+// Dynamically set CSS variables for tile/card sizing based on device ratio and dimensions
+function setResponsiveTileVars() {
+  const root = document.documentElement;
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  const ratio = w / h;
+  // Default mobile tile sizes
+  let brandCardW = 170, brandCardMediaH = 90, cardW = 180, cardMediaH = 110, presenceCardH = 90, presenceImgH = 28;
+  // If device is very tall (portrait phone, ratio < 0.6), make tiles even smaller
+  if (w < 700 && ratio < 0.6) {
+    brandCardW = 140; brandCardMediaH = 70; cardW = 150; cardMediaH = 85; presenceCardH = 70; presenceImgH = 20;
+  }
+  // If device is very wide (landscape phone/tablet, ratio > 1.5), allow slightly larger tiles
+  if (w < 900 && ratio > 1.5) {
+    brandCardW = 200; brandCardMediaH = 110; cardW = 210; cardMediaH = 130; presenceCardH = 110; presenceImgH = 36;
+  }
+  // Set CSS variables
+  root.style.setProperty('--brand-card-w', brandCardW + 'px');
+  root.style.setProperty('--brand-card-media-h', brandCardMediaH + 'px');
+  root.style.setProperty('--card-w', cardW + 'px');
+  root.style.setProperty('--card-media-h', cardMediaH + 'px');
+  root.style.setProperty('--presence-card-h', presenceCardH + 'px');
+  root.style.setProperty('--presence-img-h', presenceImgH + 'px');
+}
+
+window.addEventListener('resize', setResponsiveTileVars);
+setResponsiveTileVars();
+
 const catalog = [
   {
     id: "Putrika",
@@ -533,17 +561,11 @@ function createCard(product) {
   const article = node.querySelector(".card");
   const focusBtn = node.querySelector(".card__focus");
   const img = node.querySelector(".card__media");
-  const tag = node.querySelector(".card__tag");
   const title = node.querySelector(".card__title");
-  const summary = node.querySelector(".card__summary");
-  const price = node.querySelector(".card__price");
 
   img.src = product.media;
   img.alt = product.title;
-  tag.textContent = product.tag || product.category;
   title.textContent = product.title;
-  summary.textContent = product.summary;
-  price.textContent = product.price;
   focusBtn.setAttribute("aria-label", `View detail for ${product.title}`);
 
   const payload = { ...product };
@@ -556,15 +578,11 @@ function createBrandCard(category) {
   const node = brandTemplate.content.cloneNode(true);
   const card = node.querySelector(".brand-card");
   const img = node.querySelector("img");
-  const eyebrow = node.querySelector(".brand-card__eyebrow");
   const title = node.querySelector(".brand-card__title");
-  const summary = node.querySelector(".brand-card__summary");
 
   img.src = category.brandImage;
   img.alt = `${category.title} brand showcase`;
-  eyebrow.textContent = category.id;
   title.textContent = category.title;
-  summary.textContent = category.brandSummary;
   card.dataset.brand = category.id;
   return node;
 }

@@ -64,6 +64,53 @@
       </header>
 
       <main>
+        <section class="categories" id="categories">
+          <div class="categories__inner">
+            <p class="categories__eyebrow">Browse by</p>
+            <h2>Product Categories</h2>
+            <p class="categories__blurb">From traditional essentials to modern innovations, we cover diverse product categories to meet all your needs.</p>
+            <div class="categories__grid">
+              <article class="category-card">
+                <div class="category-card__media" aria-hidden="true">
+                  <!-- simple SVG icon placeholder -->
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-1 0-2 .5-2 1.5S11 5 12 5s2-.5 2-1.5S13 2 12 2zm-6 9c0-2.8 2.2-5 5-5s5 2.2 5 5v6H6v-6z" fill="#0f1b60"/></svg>
+                </div>
+                <h3 class="category-card__title">Brass Pooja Essentials</h3>
+              </article>
+              <article class="category-card">
+                <div class="category-card__media" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 6v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1V9l8-6z" fill="#0f1b60"/></svg>
+                </div>
+                <h3 class="category-card__title">Home Décor & Utility</h3>
+              </article>
+              <article class="category-card">
+                <div class="category-card__media" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v10H4zM6 9v6h12V9H6z" fill="#0f1b60"/></svg>
+                </div>
+                <h3 class="category-card__title">Leather Goods</h3>
+              </article>
+              <article class="category-card">
+                <div class="category-card__media" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l6 6-6 6-6-6 6-6zm0 12v8" stroke="#0f1b60" stroke-width="1.2" fill="none"/></svg>
+                </div>
+                <h3 class="category-card__title">Educational Kits</h3>
+              </article>
+              <article class="category-card">
+                <div class="category-card__media" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v10a3 3 0 0 0 6 0V2h2v10a5 5 0 0 1-10 0V2h2z" fill="#0f1b60"/></svg>
+                </div>
+                <h3 class="category-card__title">Cookware</h3>
+              </article>
+              <article class="category-card">
+                <div class="category-card__media" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21v-2l9-9 2 2-9 9H3zm18-14l-3 3-2-2 3-3 2 2z" fill="#0f1b60"/></svg>
+                </div>
+                <h3 class="category-card__title">DIY Paracord Tools</h3>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section class="about" id="about">
           <div class="about__inner">
             <p class="about__eyebrow">About Spillbox</p>
@@ -208,10 +255,7 @@
         <button class="card__focus" aria-label="View detail"></button>
         <img class="card__media" alt="" loading="lazy" />
         <div class="card__body">
-          <p class="card__tag"></p>
           <h3 class="card__title"></h3>
-          <p class="card__summary"></p>
-          <p class="card__price"></p>
         </div>
       </article>
     </template>
@@ -222,9 +266,7 @@
           <img src="" alt="" loading="lazy" />
         </div>
         <div class="brand-card__body">
-          <p class="brand-card__eyebrow"></p>
           <h3 class="brand-card__title"></h3>
-          <p class="brand-card__summary"></p>
         </div>
       </article>
     </template>
