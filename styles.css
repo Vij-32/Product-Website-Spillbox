@@ -1,0 +1,656 @@
+:root {
+  color-scheme: only light;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f7efe6;
+  --bg: #1a0d08;
+  --card: #f8f1e4;
+  --accent: #b56a2a;
+  --accent-strong: #8c3415;
+  --accent-soft: #e2b992;
+  --stroke: rgba(0, 0, 0, 0.08);
+  --text: #1d130f;
+  --muted: rgba(29, 19, 15, 0.7);
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fdf7f0 0%, #f4eadf 100%);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3.5rem clamp(1rem, 3vw, 4rem) 5rem;
+}
+
+.hero {
+  position: relative;
+  padding: 3rem clamp(1rem, 3vw, 3.5rem);
+  color: #4a1e12;
+  border-radius: 32px;
+  margin-bottom: 3.5rem;
+  background: linear-gradient(135deg, #fbe1c6, #f1b885);
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero__pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+      circle at 10% 20%,
+      rgba(255, 255, 255, 0.15),
+      transparent 35%
+    ),
+    radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.2), transparent 45%),
+    linear-gradient(110deg, rgba(255, 255, 255, 0.08), transparent);
+  filter: blur(2px);
+  z-index: 0;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__identity {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.hero__logo {
+  width: clamp(64px, 10vw, 90px);
+}
+
+.hero__logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__brand {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.8rem, 7vw, 4.8rem);
+  margin: 0;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.hero__tagline {
+  font-size: 1rem;
+  color: rgba(74, 30, 18, 0.75);
+  margin: 0;
+  max-width: 32rem;
+}
+
+.hero__title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.1rem, 6vw, 3.2rem);
+  margin: 0.4rem 0 1.2rem;
+  color: #4a1e12;
+}
+
+.hero__lede {
+  max-width: 40rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(74, 30, 18, 0.85);
+  margin: 0 auto;
+}
+
+.hero__cta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 1rem;
+  border-radius: 999px;
+  padding: 0.85rem 1.8rem;
+  border: 1px solid rgba(74, 30, 18, 0.35);
+  background: rgba(255, 255, 255, 0.9);
+  color: #4a1e12;
+  cursor: pointer;
+  transition: transform 150ms ease, border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  border-color: #4a1e12;
+}
+
+.btn--solid {
+  background: rgba(74, 30, 18, 0.08);
+}
+
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.btn--active {
+  background: #4a1e12;
+  color: #fbead9;
+  border-color: #4a1e12;
+  box-shadow: 0 12px 24px rgba(20, 8, 5, 0.25);
+}
+
+.catalog {
+  margin-top: 3rem;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(74, 30, 18, 0.08);
+  border-radius: 32px;
+  padding: clamp(1.75rem, 3vw, 3rem);
+  box-shadow: 0 25px 45px rgba(20, 8, 5, 0.08);
+}
+
+.catalog__header {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #4a1e12;
+}
+
+.catalog__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  color: rgba(74, 30, 18, 0.6);
+  margin: 0 0 0.6rem;
+}
+
+.catalog__heading {
+  margin: 0 0 0.5rem;
+  font-family: "Playfair Display", serif;
+}
+
+.catalog__blurb {
+  margin: 0 auto;
+  max-width: 36rem;
+  color: rgba(74, 30, 18, 0.75);
+}
+
+.catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.card {
+  position: relative;
+  background: var(--card);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid var(--stroke);
+  isolation: isolate;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: scale(1.03);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+.card__focus {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  z-index: 2;
+  outline: none;
+}
+
+.card__focus:focus-visible {
+  box-shadow: inset 0 0 0 3px var(--accent-soft);
+}
+
+.card__media {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.card__body {
+  padding: 1.5rem;
+}
+
+.card__tag {
+  display: inline-flex;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(181, 106, 42, 0.15);
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+  margin: 0 0 0.8rem;
+}
+
+.card__title {
+  font-family: "Playfair Display", serif;
+  margin: 0 0 0.4rem;
+}
+
+.card__summary {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.card__price {
+  font-weight: 600;
+  color: var(--accent-strong);
+  margin: 0;
+}
+
+.product-dialog {
+  border: none;
+  padding: 0;
+  border-radius: 28px;
+  width: min(520px, 90vw);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  /* start hidden for fade-in animation when opened via brand overlay */
+  opacity: 0;
+  transform: scale(0.98);
+  /* slower, smoother reveal to match the overlay transform */
+  transition: opacity 420ms cubic-bezier(.2,.9,.2,1), transform 420ms cubic-bezier(.2,.9,.2,1);
+}
+
+.product-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.dialog__close {
+  border: none;
+  background: transparent;
+  font-size: 2rem;
+  line-height: 1;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  color: var(--accent-strong);
+}
+
+.dialog__content {
+  padding: 2.5rem;
+}
+
+/* Overlay shown briefly before the dialog to spotlight the brand logo */
+.brand-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0);
+  z-index: 9999;
+  transition: background 220ms ease;
+}
+.brand-overlay--visible {
+  /* darker backdrop for stronger focus when animating */
+  background: rgba(0,0,0,0.65);
+}
+.brand-overlay__logo {
+  width: 120px;
+  height: 120px;
+  display: block;
+  /* remove white padded background so the logo itself animates cleanly */
+  background: transparent;
+  padding: 0;
+  border-radius: 6px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+  opacity: 0;
+  transform: translateY(-6px) scale(0.98);
+  transition: opacity 260ms ease, transform 420ms cubic-bezier(.2,.9,.2,1);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+.brand-overlay--visible .brand-overlay__logo {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* When dialog is visible, set opacity/scale to show it */
+.product-dialog.dialog--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dialog__content h2 {
+  font-family: "Playfair Display", serif;
+  margin-top: 0;
+}
+
+.dialog__meta {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border-radius: 20px;
+  background: rgba(181, 106, 42, 0.08);
+}
+
+.dialog__meta dt {
+  font-weight: 600;
+  color: var(--accent-strong);
+}
+
+.dialog__meta dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.meta-pill {
+  display: inline-flex;
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.07);
+  font-size: 0.8rem;
+  margin-right: 0.4rem;
+}
+
+.footer {
+  margin-top: 4rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.footer a {
+  color: inherit;
+}
+
+.brands {
+  margin-top: 4rem;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(74, 30, 18, 0.08);
+  border-radius: 36px;
+  box-shadow: 0 25px 45px rgba(20, 8, 5, 0.08);
+}
+
+.brands__header {
+  text-align: center;
+  color: #3a160b;
+  margin-bottom: 2rem;
+}
+
+.brands__header h2 {
+  font-family: "Playfair Display", serif;
+  margin: 0.3rem 0;
+}
+
+.brands__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  color: rgba(58, 22, 11, 0.65);
+  margin: 0;
+}
+
+.brands__grid {
+  /* Keep fixed-size columns so tiles keep their visual size, and center the grid
+     so the last (incomplete) row appears centered. Using a fixed column width
+     prevents items from stretching to fill the row. */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 220px);
+  justify-content: center;
+  gap: 1rem;
+}
+
+.brand-card {
+  background: #fff9f2;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 15px 35px rgba(20, 8, 5, 0.12);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  cursor: pointer;
+  text-align: left;
+  /* Keep card sizing controlled by the grid column width (220px) above. */
+}
+
+.brand-card:focus-visible {
+  outline: 3px solid var(--accent-soft);
+  outline-offset: 3px;
+}
+
+.brand-card:hover,
+.brand-card:focus-visible,
+.brand-card--active {
+  transform: scale(1.03);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+.brand-card--active {
+  outline: 3px solid rgba(74, 30, 18, 0.2);
+  outline-offset: 3px;
+}
+
+.brand-card__media {
+  position: relative;
+  overflow: hidden;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-card__media img {
+  /* Keep the icon smaller inside the tile while the tile size stays the same */
+  width: auto;
+  height: auto;
+  max-width: 70%;
+  max-height: 70%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 250ms ease;
+  display: block;
+}
+
+.brand-card__media img {
+  /* ensure no background or border shows during transforms */
+  background: transparent;
+  border: none;
+}
+
+.brand-card--active .brand-card__media {
+  /* make extra sure the logo is centered when the card is active */
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.brand-card__body {
+  padding: 1.1rem 1.25rem 1.4rem;
+}
+
+.brand-card__eyebrow {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--accent-strong);
+  margin: 0 0 0.5rem;
+}
+
+.brand-card__title {
+  margin: 0 0 0.4rem;
+  font-family: "Playfair Display", serif;
+}
+
+.brand-card__summary {
+  margin: 0;
+  color: var(--muted);
+}
+
+.dialog__brand-media {
+  margin-top: 1.5rem;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.product-dialog.dialog--brand .dialog__brand-media {
+  /* center the brand logo at the top of the dialog */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.product-dialog.dialog--brand .dialog__brand-media img {
+  width: 180px;
+  max-width: 60%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.dialog__brand-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.presence {
+  margin-top: 2.5rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(74, 30, 18, 0.08);
+  border-radius: 28px;
+  box-shadow: 0 20px 40px rgba(20, 8, 5, 0.06);
+}
+
+.presence__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(74, 30, 18, 0.65);
+  margin: 0 0 1rem;
+}
+
+.presence__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.presence__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem;
+  border-radius: 24px;
+  border: 1px solid rgba(74, 30, 18, 0.12);
+  background: #fff;
+  font-weight: 600;
+  color: #4a1e12;
+  text-align: center;
+  min-height: 150px;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.presence__card img {
+  width: auto;
+  max-height: 42px;
+  object-fit: contain;
+}
+
+.presence__card span {
+  margin-top: 0.2rem;
+}
+
+.presence__card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(20, 8, 5, 0.12);
+}
+
+.brand-switcher {
+  margin: 0 auto 1.5rem;
+}
+
+.brand-switcher__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.brand-switcher__button {
+  border-radius: 999px;
+  border: 1px solid rgba(74, 30, 18, 0.25);
+  background: rgba(255, 255, 255, 0.8);
+  color: #4a1e12;
+  padding: 0.45rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms ease, transform 150ms ease, color 150ms ease;
+}
+
+.brand-switcher__button:hover {
+  transform: translateY(-1px);
+}
+
+.brand-switcher__button--active {
+  background: #4a1e12;
+  color: #fbead9;
+  border-color: #4a1e12;
+  box-shadow: 0 12px 24px rgba(20, 8, 5, 0.2);
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding-top: 2rem;
+  }
+
+  .hero__identity {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .dialog__content {
+    padding: 2rem 1.5rem;
+  }
+
+  .card__media {
+    height: 180px;
+  }
+
+  .brand-card__media {
+    height: 140px;
+  }
+}
+

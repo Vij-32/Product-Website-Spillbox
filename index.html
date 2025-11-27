@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spillbox Heritage Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div class="hero__pattern" aria-hidden="true"></div>
+        <div class="hero__identity">
+          <figure class="hero__logo">
+            <img src="./assets/spillbox-logo.svg" alt="Spillbox logo" />
+          </figure>
+          <div class="hero__titles">
+            <h1 class="hero__brand">Spillbox</h1>
+            <p class="hero__tagline">
+              Uncompromising Craftsmanship for the Refined Home
+            </p>
+          </div>
+        </div>
+        <h2 class="hero__title">Celebrate The Indian Traditional Spirit</h2>
+        <p class="hero__lede">
+          Handpicked textiles, brassware, and artisanal curios straight from
+          master craftspeople. Touch any card to see the full story, origin, and
+          care ritual behind each piece.
+        </p>
+        <div class="hero__cta">
+          <button
+            class="btn btn--ghost"
+            data-scroll="#catalog"
+            data-highlight-on-click="true"
+          >
+            Our Products
+          </button>
+          <button
+            class="btn btn--ghost"
+            data-scroll="#brands"
+            data-highlight-on-click="true"
+          >
+            Our Brands
+          </button>
+          <button
+            class="btn btn--ghost"
+            data-scroll="#presence"
+             data-highlight-on-click="true"
+            data-scroll-align="center"
+          >
+            We Are in
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="brands" id="brands">
+          <div class="brands__header">
+            <p class="brands__eyebrow">House of Brands</p>
+            <h2>Meet Our Signature Ateliers</h2>
+            <p>
+              Each brand explores a unique material language—from brass heirlooms
+              to paracord artistry. Tap any tile to learn their full story.
+            </p>
+          </div>
+          <div class="brands__grid" aria-live="polite"></div>
+        </section>
+
+        <section class="presence" id="presence" aria-label="Marketplace partners">
+          <p class="presence__eyebrow">We are in</p>
+          <div class="presence__grid">
+            <article class="presence__card">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+                alt="Amazon logo"
+                loading="lazy"
+              />
+              <span>Amazon</span>
+            </article>
+            <article class="presence__card">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Flipkart_2015_logo.svg"
+                alt="Flipkart logo"
+                loading="lazy"
+              />
+              <span>Flipkart</span>
+            </article>
+            <article class="presence__card">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/d/df/Meesho_logo_pink.png"
+                alt="Meesho logo"
+                loading="lazy"
+              />
+              <span>Meesho</span>
+            </article>
+            <article class="presence__card">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Globe_icon.svg"
+                alt="BI World logo"
+                loading="lazy"
+              />
+              <span>BI World</span>
+            </article>
+            <article class="presence__card">
+              <img
+                src="./assets/pujalane-logo.svg"
+                alt="Pujalane logo"
+                loading="lazy"
+              />
+              <span>Pujalane</span>
+            </article>
+            <article class="presence__card">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/2/2d/IndiaMART_logo.png"
+                alt="IndiaMart logo"
+                loading="lazy"
+              />
+              <span>IndiaMart</span>
+            </article>
+            <article class="presence__card">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Walmart_logo.svg"
+                alt="Walmart logo"
+                loading="lazy"
+              />
+              <span>Walmart</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="catalog" id="catalog">
+          <div class="brand-switcher" aria-label="Brand shortcuts">
+            <div class="brand-switcher__buttons">
+              <button class="brand-switcher__button" data-brand="Putrika">
+                Putrika
+              </button>
+              <button class="brand-switcher__button" data-brand="Pujalane">
+                Pujalane
+              </button>
+              <button class="brand-switcher__button" data-brand="Djuize">
+                Djuize
+              </button>
+              <button class="brand-switcher__button" data-brand="Jobo">Jobo</button>
+              <button class="brand-switcher__button" data-brand="Moongil">
+                Moongil
+              </button>
+              <button class="brand-switcher__button" data-brand="Paracraft">
+                Paracraft
+              </button>
+              <button class="brand-switcher__button" data-brand="Abica">
+                Abica
+              </button>
+            </div>
+          </div>
+          <div class="catalog__header">
+            <p class="catalog__eyebrow">Now showcasing</p>
+            <h2 class="catalog__heading">Loading Collection</h2>
+            <p class="catalog__blurb">
+              Discover heirloom-grade craft objects tailored for modern homes.
+            </p>
+          </div>
+          <div class="catalog__grid" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>Spillbox · Curating Indian heritage décor since 2011</p>
+        <div>
+          <a href="mailto:curate@spillbox.in">curate@spillbox.in</a>
+          <span>·</span>
+          <a href="https://www.instagram.com" target="_blank" rel="noreferrer"
+            >Instagram</a
+          >
+        </div>
+      </footer>
+    </div>
+
+    <dialog class="product-dialog" aria-label="Product detail">
+      <button class="dialog__close" aria-label="Close detail">×</button>
+      <div class="dialog__content"></div>
+    </dialog>
+
+    <template id="card-template">
+      <article class="card">
+        <button class="card__focus" aria-label="View detail"></button>
+        <img class="card__media" alt="" loading="lazy" />
+        <div class="card__body">
+          <p class="card__tag"></p>
+          <h3 class="card__title"></h3>
+          <p class="card__summary"></p>
+          <p class="card__price"></p>
+        </div>
+      </article>
+    </template>
+
+    <template id="brand-card-template">
+      <article class="brand-card" tabindex="0" role="button">
+        <div class="brand-card__media">
+          <img src="" alt="" loading="lazy" />
+        </div>
+        <div class="brand-card__body">
+          <p class="brand-card__eyebrow"></p>
+          <h3 class="brand-card__title"></h3>
+          <p class="brand-card__summary"></p>
+        </div>
+      </article>
+    </template>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
+
