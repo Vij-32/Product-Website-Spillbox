@@ -590,13 +590,19 @@ function openDialog(product) {
     </dl>
     <p class="card__price">${product.price}</p>
   `;
+  // Ensure brand-specific layout is not applied for product dialogs
+  dialog.classList.remove('dialog--brand');
+  // show modal and make it visible with the same animated class
   dialog.showModal();
+  requestAnimationFrame(() => {
+    dialog.classList.add('dialog--visible');
+  });
 }
 
 function openBrandDialog(brand) {
   // create a small spotlight overlay showing the brand logo, then open the dialog with a smooth
   // transition where the logo scales/moves into the dialog image position
-  const overlay = showBrandOverlay(brand);
+  const overlayObj = showBrandOverlay(brand);
   // populate dialog content
   dialogContent.innerHTML = `
     <p class="card__tag">${brand.subtitle}</p>
@@ -620,7 +626,8 @@ function openBrandDialog(brand) {
 
   // wait for next frame to ensure dialog layout is calculated, and ensure target image is loaded
   requestAnimationFrame(() => {
-    const overlayLogo = overlay && overlay.querySelector('.brand-overlay__logo');
+  // overlayObj returns { overlay, logo }
+  const overlayLogo = overlayObj && overlayObj.logo;
     const targetImg = dialog.querySelector('.dialog__brand-media img');
     if (!overlayLogo || !targetImg) {
       // fallback: just show dialog after small delay
@@ -644,12 +651,12 @@ function openBrandDialog(brand) {
       const translateY = targetCy - startCy;
       const scale = (targetRect.width / startRect.width) || 1;
 
-        // set transform origin and animate (match CSS timing)
-        overlayLogo.style.transition = 'transform 420ms cubic-bezier(.2,.9,.2,1), opacity 260ms ease';
+        // set transform origin and animate (faster timing for responsive feel)
+        overlayLogo.style.transition = 'transform 240ms cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
       overlayLogo.style.transformOrigin = 'center center';
-      // trigger the transform
+      // trigger the transform (preserve the initial -50% centering by adding the px translation)
       requestAnimationFrame(() => {
-        overlayLogo.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        overlayLogo.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px)) scale(${scale})`;
       });
 
       // when animation ends, reveal the dialog and remove overlay
@@ -658,8 +665,8 @@ function openBrandDialog(brand) {
         // show dialog fully
         dialog.style.visibility = '';
         dialog.classList.add('dialog--visible');
-        // remove overlay after a short delay so the dialog is visible behind
-          setTimeout(() => removeBrandOverlay(), 140);
+        // remove overlay and logo after a short delay so the dialog is visible behind
+        setTimeout(() => removeBrandOverlay(), 140);
       };
       overlayLogo.addEventListener('transitionend', onEnd);
     };
@@ -690,29 +697,40 @@ function openBrandDialog(brand) {
 
 function showBrandOverlay(brand) {
   removeBrandOverlay();
+  // backdrop element (with blur) sits behind the logo
   const overlay = document.createElement('div');
   overlay.className = 'brand-overlay';
   overlay.setAttribute('data-generated', 'true');
+  document.body.appendChild(overlay);
+
+  // the logo is a separate fixed element so it isn't affected by the overlay's backdrop-filter
   const img = document.createElement('img');
   img.className = 'brand-overlay__logo';
+  img.setAttribute('data-generated', 'true');
   img.src = brand.image;
   img.alt = `${brand.title} logo`;
-  overlay.appendChild(img);
-  document.body.appendChild(overlay);
-  // force reflow then show
-  requestAnimationFrame(() => overlay.classList.add('brand-overlay--visible'));
-  return overlay;
+  document.body.appendChild(img);
+
+  // force reflow then show both
+  requestAnimationFrame(() => {
+    overlay.classList.add('brand-overlay--visible');
+    img.classList.add('is-visible');
+  });
+
+  // return both so caller can find the logo element
+  return { overlay, logo: img };
 }
 
 function removeBrandOverlay() {
-  const existing = document.querySelector('body > .brand-overlay[data-generated="true"]');
-  if (existing) {
-    existing.classList.remove('brand-overlay--visible');
-    // wait for transition then remove (match the slower transform timing)
-    setTimeout(() => {
-      if (existing.parentNode) existing.parentNode.removeChild(existing);
-    }, 520);
-  }
+  const overlay = document.querySelector('body > .brand-overlay[data-generated="true"]');
+  const logo = document.querySelector('body > .brand-overlay__logo[data-generated="true"]');
+  if (overlay) overlay.classList.remove('brand-overlay--visible');
+  if (logo) logo.classList.remove('is-visible');
+  // wait for transition then remove both
+  setTimeout(() => {
+    if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
+    if (logo && logo.parentNode) logo.parentNode.removeChild(logo);
+  }, 520);
 }
 
 function renderCatalog() {
